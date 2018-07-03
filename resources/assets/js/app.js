@@ -7,7 +7,19 @@
 
 require('./bootstrap');
 
+/**
+ * Librerías importadas
+ */
+import Element from 'element-ui';
+
 window.Vue = require('vue');
+
+Vue.use(Element)
+
+/**
+ * Vistas importadas
+ */
+Vue.component('import-view', require('./views/Import.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,5 +30,10 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    computed: {
+        csrf() {
+            return document.getElementsByName('csrf-token')[0].getAttribute('content');
+        }
+    },
 });
