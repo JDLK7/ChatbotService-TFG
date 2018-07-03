@@ -17,8 +17,8 @@ class CreatePointsTable extends Migration
             $table->uuid('id');
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
-            $table->boolean('shouldExist')->default(0);
-            $table->boolean('exists')->default(0);
+            $table->boolean('shouldExist')->default(true);
+            $table->boolean('exists')->default(false);
             $table->jsonb('properties')->nullable();
             $table->timestamps();
 
