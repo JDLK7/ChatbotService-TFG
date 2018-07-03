@@ -11,6 +11,13 @@ class Point extends Model
     use Uuids;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'points';
+
+    /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
@@ -30,8 +37,12 @@ class Point extends Model
             case 'crosswalk':
                 $point = new CrosswalkPoint();
                 break;
-            case 'works': break;
-            case 'urbanFurniture': break;
+            case 'works':
+                $point = new WorksPoint();
+                break;
+            case 'urbanFurniture':
+                $point = new UrbanFurniturePoint();
+                break;
 
             default:
                 throw new PointFactoryException($type);
