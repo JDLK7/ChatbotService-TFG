@@ -25,10 +25,5 @@ export default {
 .upload {
   text-align: center;
 }
-
-.el-upload__tip,
-.el-upload-list {
-  text-align: left
-}
 </style>
 
