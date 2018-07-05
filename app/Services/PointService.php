@@ -50,11 +50,11 @@ class PointService {
                 $coordinates = explode(',', $coordinates);
     
                 if (count($coordinates) == 3) {
-                    // Temporalmente solo crea corsswalks
-                    $point = Point::make('crosswalk');
+                    // Se quitan los atributos del tipo contenidos en el nombre.
+                    $type = str_replace('_existent', '', $layer->name);
+                    $point = Point::make($type);
                     $point->longitude = floatval($coordinates[0]);
                     $point->latitude = floatval($coordinates[1]);
-                    $point->shouldExist = str_contains($layer->name, 'propuesto');
                     $point->save();
                 }
                 else {
