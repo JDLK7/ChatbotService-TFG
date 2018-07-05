@@ -31,12 +31,6 @@ class PointTest extends TestCase
         $point = Point::make(str_random(10));
     }
 
-    public function test_new_point_comes_with_version() {
-        $point = factory(Point::class)->create();
-
-        $this->assertCount(1, $point->versions);
-    }
-
     public function test_new_point_subclass_comes_with_version() {
         $point = factory(CrosswalkPoint::class)->create();
 

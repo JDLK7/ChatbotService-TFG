@@ -5,10 +5,11 @@ namespace App;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\PointFactoryException;
+use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
 
 class Point extends Model
 {
-    use Uuids;
+    use Uuids, SingleTableInheritanceTrait;
 
     /**
      * The table associated with the model.
@@ -16,6 +17,24 @@ class Point extends Model
      * @var string
      */
     protected $table = 'points';
+
+    /**
+     * Nombre de la columna por la que se diferencia el modelo a instanciar.
+     *
+     * @var string
+     */
+    protected static $singleTableTypeField = 'type';
+
+    /**
+     * Subclases cuyos modelos se mapean en la misma tabla.
+     *
+     * @var array
+     */
+    protected static $singleTableSubclasses = [
+        WorksPoint::class,
+        CrosswalkPoint::class,
+        UrbanFurniturePoint::class,
+    ];
 
     protected static function boot() {
         parent::boot();
