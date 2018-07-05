@@ -11,10 +11,16 @@ require('./bootstrap');
  * Librerías importadas
  */
 import Element from 'element-ui';
+import { TinkerComponent } from 'botman-tinker';
 
 window.Vue = require('vue');
 
 Vue.use(Element)
+
+/**
+ * Componentes importados
+ */
+Vue.component('botman-tinker', TinkerComponent);
 
 /**
  * Vistas importadas
