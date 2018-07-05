@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\User;
 use App\Point;
 use Tests\TestCase;
 use App\WorksPoint;
@@ -13,6 +14,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PointTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_point_factory() {
         $point = Point::make('crosswalk');
         $this->assertTrue(is_a($point, CrosswalkPoint::class));
@@ -26,5 +29,26 @@ class PointTest extends TestCase
         $this->expectException(PointFactoryException::class);
 
         $point = Point::make(str_random(10));
+    }
+
+    public function test_new_point_comes_with_version() {
+        $point = factory(Point::class)->create();
+
+        $this->assertCount(1, $point->versions);
+    }
+
+    public function test_new_point_subclass_comes_with_version() {
+        $point = factory(CrosswalkPoint::class)->create();
+
+        $this->assertCount(1, $point->versions);
+    }
+
+    public function test_it_creates_point_version_with_associated_user() {
+        $point = factory(CrosswalkPoint::class)->create();
+        $user = factory(User::class)->create();
+
+        $version = $point->createVersion($user);
+
+        $this->assertNotNull($version->user);
     }
 }
