@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\User;
 use App\Point;
 use Tests\TestCase;
 use App\WorksPoint;
@@ -40,5 +41,14 @@ class PointTest extends TestCase
         $point = factory(CrosswalkPoint::class)->create();
 
         $this->assertCount(1, $point->versions);
+    }
+
+    public function test_it_creates_point_version_with_associated_user() {
+        $point = factory(CrosswalkPoint::class)->create();
+        $user = factory(User::class)->create();
+
+        $version = $point->createVersion($user);
+
+        $this->assertNotNull($version->user);
     }
 }

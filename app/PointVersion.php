@@ -31,4 +31,13 @@ class PointVersion extends Model
     public function point() {
         return $this->belongsTo(Point::class);
     }
+
+    /**
+     * Devuelve el usuario que creó la versión.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
