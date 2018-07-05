@@ -19,7 +19,7 @@ class CreatePointVersionsTable extends Migration
             $table->boolean('exists')->default(false);
             $table->jsonb('properties')->nullable();
             $table->uuid('point_id');
-            $table->uuid('user_id');
+            $table->uuid('user_id')->nullable();
             $table->timestamps();
 
             $table->primary('id');

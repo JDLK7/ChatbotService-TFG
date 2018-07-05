@@ -17,12 +17,35 @@ class Point extends Model
      */
     protected $table = 'points';
 
+    protected static function boot() {
+        parent::boot();
+
+        /**
+         * Crea la primera versión del punto que en principio
+         * no tendrá ningún usuario asociado.
+         */
+        static::created(function (Point $point) {
+            $version = new PointVersion();
+            $version->point()->associate($point);
+            $version->save();
+        });
+    }
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * Devuelve todas las versiones de un punto.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function versions() {
+        return $this->hasMany(PointVersion::class, 'point_id', 'id');
+    }
 
     /**
      * FactoryMehtod para instanciar los diferentes tipos de puntos.
