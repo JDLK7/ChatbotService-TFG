@@ -56,6 +56,15 @@ class Point extends Model
     public $incrementing = false;
 
     /**
+     * Devuelve el nombre que el usuario para el tipo de punto.
+     *
+     * @return string
+     */
+    public function getDisplayNameAttribute() : string {
+        return __('points/types.' . static::$singleTableType);
+    }
+
+    /**
      * Devuelve todas las versiones de un punto.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

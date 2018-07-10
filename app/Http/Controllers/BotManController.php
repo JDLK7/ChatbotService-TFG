@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
 use App\Conversations\ExampleConversation;
+use App\Conversations\PointExistanceConversation;
+use App\Point;
+use App\Exceptions\PointFactoryException;
 
 class BotManController extends Controller
 {
@@ -28,10 +31,30 @@ class BotManController extends Controller
 
     /**
      * Loaded through routes/botman.php
-     * @param  BotMan $bot
+     * @param \BotMan\BotMan\BotMan $bot
      */
     public function startConversation(BotMan $bot)
     {
         $bot->startConversation(new ExampleConversation());
+    }
+
+    /**
+     * Loaded through routes/botman.php
+     * @param \BotMan\BotMan\BotMan $bot
+     */
+    public function startPointConversation(BotMan $bot)
+    {
+        $payload = (object) $bot->getMessage()->getPayload();
+
+        if (isset($payload->type)) {
+            try {
+                $point = Point::make($payload->type);
+                $bot->startConversation(new PointExistanceConversation($point));
+            } catch(PointFactoryException $exception) {
+                $bot->reply($exception->getMessage());
+            }
+        } else {
+            $bot->reply(__('botman/errors.required_type'));
+        }
     }
 }
