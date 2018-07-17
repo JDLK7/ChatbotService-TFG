@@ -13,7 +13,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "nanigans/single-table-inheritance": "0.8.*"
+        "nanigans/single-table-inheritance": "0.8.*",
+        "tymon/jwt-auth": "1.0.*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
