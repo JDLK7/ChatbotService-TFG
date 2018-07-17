@@ -17,10 +17,12 @@ class CreatePointsTable extends Migration
             $table->uuid('id');
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
+            $table->point('location');
             $table->string('type');
             $table->timestamps();
 
             $table->primary('id');
+            $table->spatialIndex('location');
         });
     }
 
