@@ -43,7 +43,7 @@ class PointController extends Controller
         $request->validate([
             'lat' => 'required|numeric',
             'lng' => 'required|numeric',
-            'threshold' => 'nullable|numeric',
+            'threshold' => 'nullable|integer',
         ]);
 
         $threshold = $request->query('threshold', 10);
@@ -56,7 +56,7 @@ class PointController extends Controller
         
         if ($currentPosition->distanceTo($nearest) > $threshold) {
             return response()->json([
-                'success' => true,
+                'success' => false,
                 'message' => 'No hay ningún punto cercano',
                 'point' => null,
             ]);
