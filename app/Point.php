@@ -126,6 +126,9 @@ class Point extends Model
             case 'urbanFurniture':
                 $point = new UrbanFurniturePoint($attributes);
                 break;
+            case 'obstacle':
+                $point = new ObstaclePoint($attributes);
+                break;
 
             default:
                 throw new PointFactoryException($type);
