@@ -7,7 +7,7 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 // use App\Conversations\CrosswalkConversation;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use App\Conversations\AccessibilityConversation;
-// use App\Conversations\CategorizationConversation;
+use App\Conversations\CategorizationConversation;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 
 class PointExistanceConversation extends AccessibilityConversation
@@ -31,7 +31,7 @@ class PointExistanceConversation extends AccessibilityConversation
             if ($answer->isInteractiveMessageReply()) {
                 if ($answer->getValue() === 'true') {
                     if (is_a($this->point, \App\ObstaclePoint::class)) {
-                        // $this->bot->startConversation(new CategorizationConversation($this->point));
+                        $this->bot->startConversation(new CategorizationConversation($this->point));
                     } else if (is_a($this->point, \App\CrosswalkPoint::class)) {
                         // $this->bot->startConversation(new CrosswalkConversation($this->point));
                     } else {
