@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Point;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Exceptions\PointServiceException;
 
@@ -43,7 +44,7 @@ class PointService {
 
         foreach ($layers as $layer) {
             $prefix = $this->xmlNamespace($layer);
-            $placemarks = $layer->xpath("//$prefix:Placemark");
+            $placemarks = $layer->Placemark;
 
             foreach ($placemarks as $placemark) {
                 $coordinates = (string) $placemark->Point->coordinates;
@@ -55,6 +56,7 @@ class PointService {
                     $point = Point::make($type);
                     $point->longitude = floatval($coordinates[0]);
                     $point->latitude = floatval($coordinates[1]);
+                    $point->location = DB::raw("ST_SetSRID(ST_MakePoint($point->longitude, $point->latitude), 4326)");
                     $point->save();
                 }
                 else {

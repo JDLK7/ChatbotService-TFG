@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Uuids;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\PointFactoryException;
 use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
@@ -10,6 +11,21 @@ use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
 class Point extends Model
 {
     use Uuids, SingleTableInheritanceTrait;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'id',
+        'latitude',
+        'longitude',
+        'location',
+        'type',
+        'created_at',
+        'updated_at',
+    ];
 
     /**
      * The table associated with the model.
@@ -56,6 +72,33 @@ class Point extends Model
     public $incrementing = false;
 
     /**
+     * Devuelve el nombre que el usuario para el tipo de punto.
+     *
+     * @return string
+     */
+    public function getDisplayNameAttribute() : string {
+        return __('points/types.' . static::$singleTableType);
+    }
+
+    /**
+     * Alias para el atributo "latitude"
+     *
+     * @return float
+     */
+    public function getLatAttribute() {
+        return $this->latitude;
+    }
+
+    /**
+     * Alias para el atributo "longitude"
+     *
+     * @return float
+     */
+    public function getLngAttribute() {
+        return $this->longitude;
+    }
+
+    /**
      * Devuelve todas las versiones de un punto.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -70,18 +113,21 @@ class Point extends Model
      * @param string $type
      * @return \App\Point
      */
-    public static function make(string $type) : Point {
+    public static function make(string $type, array $attributes = []) : Point {
         $point = null;
 
         switch ($type) {
             case 'crosswalk':
-                $point = new CrosswalkPoint();
+                $point = new CrosswalkPoint($attributes);
                 break;
             case 'works':
-                $point = new WorksPoint();
+                $point = new WorksPoint($attributes);
                 break;
             case 'urbanFurniture':
-                $point = new UrbanFurniturePoint();
+                $point = new UrbanFurniturePoint($attributes);
+                break;
+            case 'obstacle':
+                $point = new ObstaclePoint($attributes);
                 break;
 
             default:
@@ -120,5 +166,40 @@ class Point extends Model
         $version->save();
 
         return $version;
+    }
+
+    /**
+     * Devuelve el punto más cercano.
+     *
+     * @return \App\Point
+     */
+    public function nearestPoint() : Point {
+        $nearest = DB::table('points')->orderBy(
+            DB::raw("location <-> st_setsrid(st_makepoint($this->longitude, $this->latitude), 4326)")
+        )
+        ->take(2)->get()->last();
+
+        return Point::make($nearest->type, (array) $nearest);
+    }
+
+    /**
+     * Devuelve la distancia a otro punto.
+     *
+     * @param \App\Point $point
+     * @return float
+     */
+    public function distanceTo(Point $point) : float {
+        $earthRadius = 6371000;
+
+        $dLat = deg2rad($point->lat - $this->lat);
+        $dLng = deg2rad($point->lng - $this->lng);
+
+        $lat1 = deg2rad($this->lat);
+        $lat2 = deg2rad($point->lat);
+
+        $a = pow(sin($dLat / 2), 2) + pow(sin($dLng / 2), 2) * cos($lat1) * cos($lat2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+        return $earthRadius * $c;
     }
 }

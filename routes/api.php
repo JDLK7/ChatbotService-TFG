@@ -23,6 +23,10 @@ Route::group([
     Route::post('me', 'AuthController@me');
 });
 
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('point', 'PointController@getNearestPoint');
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
