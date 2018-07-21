@@ -3,9 +3,6 @@
 /public/storage
 /storage/*.key
 /storage/app/imports
-/public/mix-manifest.json
-/public/css/app.css
-/public/js/app.js
 /vendor
 /.idea
 /.vscode
