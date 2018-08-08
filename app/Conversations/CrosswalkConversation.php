@@ -10,7 +10,7 @@ use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 class CrosswalkConversation extends AccessibilityConversation
 {
     /**
-     * Las propiedades del punto: 
+     * Las propiedades del punto.
      *
      * @var object
      */
@@ -18,7 +18,7 @@ class CrosswalkConversation extends AccessibilityConversation
 
     protected function reviewPoint() {
         $review = $this->point->makeVersion(auth()->user());
-        $review->properties = $this->properties;
+        $review->properties = json_encode($this->properties);
         $review->save();
     }
 

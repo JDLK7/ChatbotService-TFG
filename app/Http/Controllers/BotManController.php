@@ -46,15 +46,15 @@ class BotManController extends Controller
     {
         $payload = (object) $bot->getMessage()->getPayload();
 
-        if (isset($payload->type)) {
+        if (isset($payload->point_id)) {
             try {
-                $point = Point::make($payload->type);
+                $point = Point::findOrFail($payload->point_id);
                 $bot->startConversation(new PointExistanceConversation($point));
             } catch(PointFactoryException $exception) {
                 $bot->reply($exception->getMessage());
             }
         } else {
-            $bot->reply(__('botman/errors.required_type'));
+            $bot->reply(__('botman/errors.required_point_id'));
         }
     }
 }
