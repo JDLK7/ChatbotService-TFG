@@ -14,6 +14,9 @@ class RatingAction  implements QuestionActionInterface
     /** @var string */
     protected $name;
 
+    /** @var string */
+    protected $type = 'rating';
+
     /**
      * @param string $name
      */
@@ -41,6 +44,7 @@ class RatingAction  implements QuestionActionInterface
         return [
             'name' => $this->name,
             'value' => $this->value ?? 0,
+            'type' => $this->type,
         ];
     }
 }
