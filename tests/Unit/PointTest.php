@@ -10,11 +10,11 @@ use App\CrosswalkPoint;
 use App\UrbanFurniturePoint;
 use App\Exceptions\PointFactoryException;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PointTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     public function test_point_factory() {
         $point = Point::make('crosswalk');

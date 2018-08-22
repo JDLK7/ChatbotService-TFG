@@ -56,7 +56,6 @@ class PointService {
                     $point = Point::make($type);
                     $point->longitude = floatval($coordinates[0]);
                     $point->latitude = floatval($coordinates[1]);
-                    $point->location = DB::raw("ST_SetSRID(ST_MakePoint($point->longitude, $point->latitude), 4326)");
                     $point->save();
                 }
                 else {

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\Uuids;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\NoPointsException;
 use Illuminate\Database\Eloquent\Model;
 use App\Exceptions\PointFactoryException;
 use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
@@ -54,6 +55,13 @@ class Point extends Model
 
     protected static function boot() {
         parent::boot();
+
+        /**
+         * Calcula la localización geográfica para PostGIS.
+         */
+        static::saving(function (Point $point) {
+            $point->location = DB::raw("ST_SetSRID(ST_MakePoint($point->longitude, $point->latitude), 4326)");
+        });
 
         /**
          * Crea la primera versión del punto que en principio
@@ -169,15 +177,35 @@ class Point extends Model
     }
 
     /**
-     * Devuelve el punto más cercano.
+     * Devuelve el punto más cercano que no haya sido
+     * revisado por el usuario autentificado.
      *
+     * @throws \App\Exceptions\NoPointsException
      * @return \App\Point
      */
     public function nearestPoint() : Point {
-        $nearest = DB::table('points')->orderBy(
+        $user = auth()->user();
+
+        // Query geoespacial para obtener los puntos más cercanos.
+        $query = DB::table('points')->orderBy(
             DB::raw("location <-> st_setsrid(st_makepoint($this->longitude, $this->latitude), 4326)")
-        )
-        ->take(2)->get()->last();
+        );
+
+        // Si hay un usuario autentificado se descartan los puntos que haya revisado anteriormente.
+        if (isset($user)) {
+            $query = $query->join('point_versions', 'points.id', 'point_versions.point_id')
+                ->whereNull('user_id')
+                ->orWhere('user_id', '<>', $user->id);
+        }
+
+        // Se cogen dos porque el punto más cercano a otro es
+        // el mismo punto y nosotros queremos uno diferente.
+        $nearest = $query->take(2)->get()->last();
+
+        // Si no se ha encontrado el punto más cercano significa que la BD está vacía.
+        if (is_null($nearest)) {
+            throw new NoPointsException();
+        }
 
         return Point::make($nearest->type, (array) $nearest);
     }
