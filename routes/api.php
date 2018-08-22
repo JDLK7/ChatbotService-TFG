@@ -25,6 +25,7 @@ Route::group([
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('point', 'PointController@getNearestPoint');
+    Route::get('points', 'PointController@index');
     Route::match(['get', 'post'], 'botman', 'BotManController@handle');
 });
 

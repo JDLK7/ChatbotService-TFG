@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Point;
 use Illuminate\Http\Request;
 use App\Services\PointService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PointController extends Controller
@@ -66,6 +67,30 @@ class PointController extends Controller
             'success' => true,
             'message' => 'Punto cercano encontrado',
             'point' => $nearest,
+        ]);
+    }
+
+    public function index(Request $request) {
+        $request->validate([
+            'lat' => 'required|numeric',
+            'lng' => 'required|numeric',
+            'radius' => 'nullable|integer',
+        ]);
+
+        $lat = $request->query('lat');
+        $lng = $request->query('lng');
+        $radius = $request->query('radius', 200);
+
+        $points = Point::whereRaw("ST_DWithin(
+                Geography(location),
+                Geography(ST_MakePoint($lng, $lat)),
+                $radius
+            )")->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Puntos en un radio de $radius metros",
+            'points' => $points,
         ]);
     }
 }
