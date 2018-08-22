@@ -17,10 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/import', 'PointController@import');
-Route::view('/import', 'import');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::match(['get', 'post'], '/botman', 'BotManController@handle');
-Route::get('/botman/tinker', 'BotManController@tinker');
+Route::group(['middleware' => 'auth'], function() {
+    Route::post('/import', 'PointController@import');
+    Route::view('/import', 'import');
+    
+    Route::get('/home', 'HomeController@index')->name('home');
+    
+    Route::match(['get', 'post'], '/botman', 'BotManController@handle');
+    Route::get('/botman/tinker', 'BotManController@tinker');
+});
