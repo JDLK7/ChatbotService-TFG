@@ -23,6 +23,9 @@ Route::group([
     Route::post('me', 'AuthController@me');
 });
 
+Route::get('overall-revisions', 'DashboardController@overallRevisions');
+Route::get('monthly-revisions', 'DashboardController@revisionsPerMonth');
+
 Route::middleware(['auth:api'])->group(function () {
     Route::get('point', 'PointController@getNearestPoint');
     Route::get('points', 'PointController@index');
