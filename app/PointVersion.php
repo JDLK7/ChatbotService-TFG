@@ -24,6 +24,16 @@ class PointVersion extends Model
     public $incrementing = false;
 
     /**
+     * Codifica el objeto como JSON para ser guardado en la base de datos.
+     *
+     * @param object $value
+     * @return void
+     */
+    public function setPropertiesAttribute(object $value) {
+        $this->attributes['properties'] = json_encode($value);
+    }
+
+    /**
      * Devuelve el punto al que pertenece la versión.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

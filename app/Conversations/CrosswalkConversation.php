@@ -18,7 +18,7 @@ class CrosswalkConversation extends AccessibilityConversation
 
     protected function reviewPoint() {
         $review = $this->point->makeVersion(auth()->user());
-        $review->properties = json_encode($this->properties);
+        $review->properties = $this->properties;
         $review->save();
     }
 
