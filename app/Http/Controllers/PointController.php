@@ -93,4 +93,42 @@ class PointController extends Controller
             'points' => $points,
         ]);
     }
+
+    /**
+     * Devuelve los puntos que corresponden a un determinado 
+     * tipo de problema de accesibilidad detectado.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function pointsByAlertType(Request $request) {
+        $request->validate([
+            'type' => 'required|string',
+        ]);
+
+        $type = $request->query('type');
+
+        $query = Point::join('point_versions', 'points.id', 'point_versions.point_id');
+        $points;
+
+        switch ($type) {
+            case 'non_existent_points':
+                $points = $query->where('shouldExist', true)->where('exists', false)->get();
+                break;
+            
+            case 'crosswalk_bad_visibility':
+                $points = $query->where('properties->visibility', 'bad')->get();
+                break;
+            
+            case 'crosswalk_no_curb_ramps':
+                $points = $query->where('properties->hasCurbRamps', 'false')->get();
+                break;
+
+            default: $points = [];
+                break;
+        }
+
+        // JSON_NUMERIC_CHECK sirve para que NO se serialicen los números como strings.
+        return response()->json($points, 200, [], JSON_NUMERIC_CHECK);
+    }
 }
