@@ -4583,7 +4583,7 @@
 "use strict";
 
 
-module.exports = __webpack_require__(33);
+module.exports = __webpack_require__(34);
 module.exports.easing = __webpack_require__(340);
 module.exports.canvas = __webpack_require__(341);
 module.exports.options = __webpack_require__(342);
@@ -4622,7 +4622,7 @@ module.exports = {
 /* harmony export (immutable) */ __webpack_exports__["c"] = deepMerge;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__);
 
 
@@ -16639,7 +16639,7 @@ exports.default = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(16);
-var createDesc = __webpack_require__(27);
+var createDesc = __webpack_require__(28);
 module.exports = __webpack_require__(17) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -16652,7 +16652,7 @@ module.exports = __webpack_require__(17) ? function (object, key, value) {
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(26);
+var anObject = __webpack_require__(27);
 var IE8_DOM_DEFINE = __webpack_require__(76);
 var toPrimitive = __webpack_require__(46);
 var dP = Object.defineProperty;
@@ -16697,7 +16697,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var store = __webpack_require__(50)('wks');
-var uid = __webpack_require__(30);
+var uid = __webpack_require__(31);
 var Symbol = __webpack_require__(9).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -17355,6 +17355,12 @@ module.exports = {
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(222);
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var isObject = __webpack_require__(21);
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
@@ -17363,7 +17369,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -17377,7 +17383,7 @@ module.exports = function (bitmap, value) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
@@ -17390,14 +17396,14 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = true;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -17408,14 +17414,14 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17442,7 +17448,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 };
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17786,12 +17792,6 @@ helpers.getValueOrDefault = helpers.valueOrDefault;
  */
 helpers.getValueAtIndexOrDefault = helpers.valueAtIndexOrDefault;
 
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(222);
 
 /***/ }),
 /* 35 */
@@ -19215,7 +19215,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(50)('keys');
-var uid = __webpack_require__(30);
+var uid = __webpack_require__(31);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -19234,7 +19234,7 @@ var store = global[SHARED] || (global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: core.version,
-  mode: __webpack_require__(29) ? 'pure' : 'global',
+  mode: __webpack_require__(30) ? 'pure' : 'global',
   copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 });
 
@@ -19289,7 +19289,7 @@ exports.f = __webpack_require__(19);
 
 var global = __webpack_require__(9);
 var core = __webpack_require__(20);
-var LIBRARY = __webpack_require__(29);
+var LIBRARY = __webpack_require__(30);
 var wksExt = __webpack_require__(55);
 var defineProperty = __webpack_require__(16).f;
 module.exports = function (name) {
@@ -34143,7 +34143,7 @@ module.exports = function (it) {
 
 "use strict";
 
-var LIBRARY = __webpack_require__(29);
+var LIBRARY = __webpack_require__(30);
 var $export = __webpack_require__(45);
 var redefine = __webpack_require__(83);
 var hide = __webpack_require__(15);
@@ -34225,7 +34225,7 @@ module.exports = __webpack_require__(15);
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(26);
+var anObject = __webpack_require__(27);
 var dPs = __webpack_require__(283);
 var enumBugKeys = __webpack_require__(51);
 var IE_PROTO = __webpack_require__(49)('IE_PROTO');
@@ -47891,7 +47891,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(34);
+window.axios = __webpack_require__(26);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -110855,7 +110855,7 @@ exports.default = aria.Utils;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_typeof__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validator___ = __webpack_require__(301);
@@ -111190,9 +111190,9 @@ module.exports = function (it) {
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(28);
+var getKeys = __webpack_require__(29);
 var gOPS = __webpack_require__(52);
-var pIE = __webpack_require__(31);
+var pIE = __webpack_require__(32);
 var toObject = __webpack_require__(81);
 var IObject = __webpack_require__(79);
 var $assign = Object.assign;
@@ -111347,7 +111347,7 @@ module.exports = function (TO_STRING) {
 "use strict";
 
 var create = __webpack_require__(84);
-var descriptor = __webpack_require__(27);
+var descriptor = __webpack_require__(28);
 var setToStringTag = __webpack_require__(54);
 var IteratorPrototype = {};
 
@@ -111365,8 +111365,8 @@ module.exports = function (Constructor, NAME, next) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(16);
-var anObject = __webpack_require__(26);
-var getKeys = __webpack_require__(28);
+var anObject = __webpack_require__(27);
+var getKeys = __webpack_require__(29);
 
 module.exports = __webpack_require__(17) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
@@ -111521,22 +111521,22 @@ var META = __webpack_require__(293).KEY;
 var $fails = __webpack_require__(22);
 var shared = __webpack_require__(50);
 var setToStringTag = __webpack_require__(54);
-var uid = __webpack_require__(30);
+var uid = __webpack_require__(31);
 var wks = __webpack_require__(19);
 var wksExt = __webpack_require__(55);
 var wksDefine = __webpack_require__(56);
 var enumKeys = __webpack_require__(294);
 var isArray = __webpack_require__(295);
-var anObject = __webpack_require__(26);
+var anObject = __webpack_require__(27);
 var isObject = __webpack_require__(21);
 var toIObject = __webpack_require__(18);
 var toPrimitive = __webpack_require__(46);
-var createDesc = __webpack_require__(27);
+var createDesc = __webpack_require__(28);
 var _create = __webpack_require__(84);
 var gOPNExt = __webpack_require__(296);
 var $GOPD = __webpack_require__(297);
 var $DP = __webpack_require__(16);
-var $keys = __webpack_require__(28);
+var $keys = __webpack_require__(29);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
 var gOPN = gOPNExt.f;
@@ -111660,10 +111660,10 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(85).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(31).f = $propertyIsEnumerable;
+  __webpack_require__(32).f = $propertyIsEnumerable;
   __webpack_require__(52).f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(29)) {
+  if (DESCRIPTORS && !__webpack_require__(30)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -111750,7 +111750,7 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META = __webpack_require__(30)('meta');
+var META = __webpack_require__(31)('meta');
 var isObject = __webpack_require__(21);
 var has = __webpack_require__(12);
 var setDesc = __webpack_require__(16).f;
@@ -111810,9 +111810,9 @@ var meta = module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(28);
+var getKeys = __webpack_require__(29);
 var gOPS = __webpack_require__(52);
-var pIE = __webpack_require__(31);
+var pIE = __webpack_require__(32);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -111866,8 +111866,8 @@ module.exports.f = function getOwnPropertyNames(it) {
 /* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(31);
-var createDesc = __webpack_require__(27);
+var pIE = __webpack_require__(32);
+var createDesc = __webpack_require__(28);
 var toIObject = __webpack_require__(18);
 var toPrimitive = __webpack_require__(46);
 var has = __webpack_require__(12);
@@ -112031,7 +112031,7 @@ function whitespace(rule, value, source, errors, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__required__ = __webpack_require__(86);
@@ -112666,7 +112666,7 @@ function date(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(4);
 
@@ -116820,7 +116820,7 @@ exports = module.exports = __webpack_require__(87)(false);
 
 
 // module
-exports.push([module.i, "\n.chart-container[data-v-361a3c51] {\n  display: grid;\n  grid-template-columns: 30% auto;\n}\n.chart-container .card[data-v-361a3c51]:not(:last-child) {\n    margin-right: 1.25rem;\n}\n", ""]);
+exports.push([module.i, "\n.row[data-v-361a3c51]:not(:last-child) {\n  margin-bottom: 1.25rem;\n}\n.revisions-container[data-v-361a3c51] {\n  display: grid;\n  grid-template-columns: 30% auto;\n}\n.revisions-container .card[data-v-361a3c51]:not(:last-child) {\n    margin-right: 1.25rem;\n}\n.alerts-container .alert[data-v-361a3c51] {\n  width: 100%;\n  cursor: pointer;\n}\n.alerts-heading[data-v-361a3c51] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: baseline;\n      -ms-flex-align: baseline;\n          align-items: baseline;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n", ""]);
 
 // exports
 
@@ -116831,10 +116831,12 @@ exports.push([module.i, "\n.chart-container[data-v-361a3c51] {\n  display: grid;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_charts_RevisionsPie__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_charts_RevisionsPie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_charts_RevisionsPie__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_charts_MonthlyRevisionsLine__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_charts_MonthlyRevisionsLine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_charts_MonthlyRevisionsLine__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_charts_RevisionsPie__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_charts_RevisionsPie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_charts_RevisionsPie__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_charts_MonthlyRevisionsLine__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_charts_MonthlyRevisionsLine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_charts_MonthlyRevisionsLine__);
 //
 //
 //
@@ -116855,22 +116857,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    'revisions-pie': __WEBPACK_IMPORTED_MODULE_0__components_charts_RevisionsPie___default.a,
-    'monthly-revisions-line': __WEBPACK_IMPORTED_MODULE_1__components_charts_MonthlyRevisionsLine___default.a
+    'revisions-pie': __WEBPACK_IMPORTED_MODULE_1__components_charts_RevisionsPie___default.a,
+    'monthly-revisions-line': __WEBPACK_IMPORTED_MODULE_2__components_charts_MonthlyRevisionsLine___default.a
   },
   data: function data() {
     return {
+      isAlertsVisible: false,
       chartStyles: {
         height: '400px',
         position: 'relative'
-      }
+      },
+      alerts: []
     };
+  },
+  beforeMount: function beforeMount() {
+    var _this = this;
+
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/alerts').then(function (_ref) {
+      var data = _ref.data;
+
+      _this.alerts = _this.alerts.concat(data);
+    });
   }
 });
 
@@ -116928,7 +116969,7 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 
 
@@ -117368,7 +117409,7 @@ module.exports = function() {
 "use strict";
 
 
-var helpers = __webpack_require__(33);
+var helpers = __webpack_require__(34);
 
 /**
  * Easing functions adapted from Robert Penner's easing equations.
@@ -117625,7 +117666,7 @@ helpers.easingEffects = effects;
 "use strict";
 
 
-var helpers = __webpack_require__(33);
+var helpers = __webpack_require__(34);
 
 /**
  * @namespace Chart.helpers.canvas
@@ -117846,7 +117887,7 @@ helpers.drawRoundedRectangle = function(ctx) {
 "use strict";
 
 
-var helpers = __webpack_require__(33);
+var helpers = __webpack_require__(34);
 
 /**
  * @alias Chart.helpers.options
@@ -129830,7 +129871,7 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 
 
@@ -129885,35 +129926,116 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid chart-container" }, [
-    _c("div", { staticClass: "card" }, [
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        [
-          _c("h4", { staticClass: "card-title" }, [
-            _vm._v("Porcentaje de revisiones")
-          ]),
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "row card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-title alerts-heading",
+              style: { marginBottom: _vm.isAlertsVisible ? "0.75rem" : 0 }
+            },
+            [
+              _c("h4", [_vm._v("Problemas y avisos encontrados")]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-default",
+                  on: {
+                    click: function($event) {
+                      _vm.isAlertsVisible = !_vm.isAlertsVisible
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fas",
+                    class: [
+                      _vm.isAlertsVisible ? "fa-chevron-up" : "fa-chevron-down"
+                    ]
+                  })
+                ]
+              )
+            ]
+          ),
           _vm._v(" "),
-          _c("revisions-pie", { attrs: { styles: _vm.chartStyles } })
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _c(
-        "div",
-        { staticClass: "card-body" },
-        [
-          _c("h4", { staticClass: "card-title" }, [
-            _vm._v("Revisiones mensuales")
-          ]),
-          _vm._v(" "),
-          _c("monthly-revisions-line", { attrs: { styles: _vm.chartStyles } })
-        ],
-        1
-      )
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.alerts && _vm.isAlertsVisible,
+                  expression: "alerts && isAlertsVisible"
+                }
+              ],
+              staticClass: "alerts-container"
+            },
+            _vm._l(_vm.alerts, function(alert, i) {
+              return _c(
+                "div",
+                {
+                  key: i,
+                  staticClass: "alert",
+                  class: [
+                    alert.category == "problem"
+                      ? "alert-danger"
+                      : "alert-warning"
+                  ],
+                  attrs: { role: "alert" }
+                },
+                [
+                  _c("span", [
+                    _c("strong", [_vm._v(_vm._s(alert.title))]),
+                    _vm._v(" " + _vm._s(alert.text))
+                  ]),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "float-right" }, [
+                    _vm._v("Pulsa para ver en el mapa")
+                  ])
+                ]
+              )
+            })
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row revisions-container" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("h4", { staticClass: "card-title" }, [
+                _vm._v("Porcentaje de revisiones")
+              ]),
+              _vm._v(" "),
+              _c("revisions-pie", { attrs: { styles: _vm.chartStyles } })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("h4", { staticClass: "card-title" }, [
+                _vm._v("Revisiones mensuales")
+              ]),
+              _vm._v(" "),
+              _c("monthly-revisions-line", {
+                attrs: { styles: _vm.chartStyles }
+              })
+            ],
+            1
+          )
+        ])
+      ])
     ])
   ])
 }
