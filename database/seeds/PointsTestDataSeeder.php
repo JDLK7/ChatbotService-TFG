@@ -15,6 +15,9 @@ class PointsTestDataSeeder extends Seeder
      */
     public function run()
     {
+        $visibilityGrades = [
+            'good', 'normal', 'bad',
+        ];
         $currentMonth = Carbon::now()->month;
         $fakeUser = factory(User::class)->create();
 
@@ -34,12 +37,17 @@ class PointsTestDataSeeder extends Seeder
             $points = Point::whereMonth('created_at', $i)
                 ->take(rand(0, $pointsCount))->get();
 
-            $points->map(function ($point) use ($fakeUser) {
+            foreach ($points as $point) {
                 $revision = $point->makeVersion($fakeUser);
                 $revision->created_at = $point->created_at;
                 $revision->updated_at = $point->updated_at;
+                $revision->properties = (object) [
+                    'hasCurbRamps' => rand(0, 1) == 1,
+                    'visibility' => $visibilityGrades[rand(0, 2)],
+                    'hasSemaphore' => rand(0, 1) == 1,
+                ];
                 $revision->save();
-            });
+            }
         }
     }
 }
