@@ -16,11 +16,34 @@
               :key="i"
               class="alert"
               role="alert"
-              :class="[ alert.category == 'problem' ? 'alert-danger' : 'alert-warning' ]">
+              :class="[ alert.category == 'problem' ? 'alert-danger' : 'alert-warning' ]"
+              @click="showOnMap(alert.type)">
                 <span><strong>{{ alert.title }}</strong> {{ alert.text }}</span>
                 <i class="float-right">Pulsa para ver en el mapa</i>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div v-if="isMapVisible" class="row card">
+        <div class="card-body">
+          <div class="card-title">
+            <h4>Mapa</h4>
+          </div>
+
+          <GmapMap
+            :zoom="map.zoom"
+            :center="map.center"
+            :options="map.options"
+            style="width: 100%; height: 600px">
+            <GmapMarker
+              v-for="marker in map.markers"
+              :key="marker.id"
+              :position="{ lat:  marker.latitude, lng: marker.longitude }"
+              :clickable="false"
+              :draggable="false" />
+          </GmapMap>
+
         </div>
       </div>
 
@@ -56,13 +79,36 @@ export default {
     'monthly-revisions-line': MonthlyRevisionsLine,
   },
   data: () => ({
-    isAlertsVisible: false,
+    isMapVisible: true,
+    isAlertsVisible: true,
     chartStyles: {
       height: '400px',
       position: 'relative',
     },
     alerts: [],
+    map: {
+      zoom: 16,
+      center: { lat: 37.978056, lng: -0.678444 },
+        options: {
+          fullscreenControl: false,
+          streetViewControl: false,
+      },
+      markers: [],
+    }
   }),
+  methods: {
+    showOnMap(type) {
+      this.isMapVisible = true;
+      this.isAlertsVisible = false;
+
+      axios.get('/api/points-by-alert-type', {
+        params: { type },
+      })
+      .then(({ data }) => {
+        this.map.markers = data;
+      });
+    },
+  },
   beforeMount() {
     axios.get('/api/alerts')
     .then(({ data }) => {
