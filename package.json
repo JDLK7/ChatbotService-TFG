@@ -23,6 +23,7 @@
         "botman-tinker": "0.0.1",
         "chart.js": "^2.7.2",
         "element-ui": "^2.4.2",
-        "vue-chartjs": "^3.4.0"
+        "vue-chartjs": "^3.4.0",
+        "vue2-google-maps": "^0.10.2"
     }
 }

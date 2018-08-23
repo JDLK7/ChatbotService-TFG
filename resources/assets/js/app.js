@@ -12,6 +12,7 @@ require('./bootstrap');
  */
 import Element from 'element-ui';
 import { TinkerComponent } from 'botman-tinker';
+import * as VueGoogleMaps from 'vue2-google-maps';
 
 window.Vue = require('vue');
 
@@ -35,6 +36,16 @@ Vue.component('dashboard', require('./views/Dashboard.vue'));
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyDK87O4M7ib6w9cJfuCzwV5wvAglmDtDN8',
+        libraries: 'places', // This is required if you use the Autocomplete plugin
+        // OR: libraries: 'places,drawing'
+        // OR: libraries: 'places,drawing,visualization'
+        // (as you require)
+    },
+});
 
 const app = new Vue({
     el: '#app',
