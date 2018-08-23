@@ -26,6 +26,7 @@ Vue.component('botman-tinker', TinkerComponent);
  * Vistas importadas
  */
 Vue.component('import-view', require('./views/Import.vue'));
+Vue.component('dashboard', require('./views/Dashboard.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
