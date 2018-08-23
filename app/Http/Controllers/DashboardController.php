@@ -72,10 +72,9 @@ class DashboardController extends Controller
     public function alerts() {
         $alerts = [];
 
-        $query = Point::join('point_versions', 'points.id', 'point_versions.point_id');
-
         // Número de puntos que deberían existir pero según X usuarios no existen.
-        $nonExistentPoints = $query->where('shouldExist', true)->where('exists', false)->count();
+        $nonExistentPoints = Point::join('point_versions', 'points.id', 'point_versions.point_id')
+            ->where('shouldExist', true)->where('exists', false)->count();
         if ($nonExistentPoints > 0) {
             $alerts[] = [
                 'title' => 'Puntos no existentes',
@@ -86,7 +85,8 @@ class DashboardController extends Controller
         }
 
         // Número de pasos de cebra con mala visibilidad.
-        $crossBadVisibility = $query->where('properties->visibility', 'bad')->count();
+        $crossBadVisibility = Point::join('point_versions', 'points.id', 'point_versions.point_id')
+            ->where('properties->visibility', 'bad')->count();
         if ($crossBadVisibility > 0) {
             $alerts[] = [
                 'title' => 'Pasos de cebra con mala visibilidad',
@@ -97,7 +97,8 @@ class DashboardController extends Controller
         }
 
         // Número de pasos de cebra que no tienen vados.
-        $crossNoCurbRamps = $query->where('properties->hasCurbRamps', 'false')->count();
+        $crossNoCurbRamps = Point::join('point_versions', 'points.id', 'point_versions.point_id')
+            ->where('properties->hasCurbRamps', 'false')->count();
         if ($crossNoCurbRamps > 0) {
             $alerts = array_prepend($alerts, [
                 'title' => 'Pasos de cebra sin vados',
