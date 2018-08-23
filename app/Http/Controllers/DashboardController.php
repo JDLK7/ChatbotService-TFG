@@ -62,4 +62,51 @@ class DashboardController extends Controller
             'totalPerMonth' => $totalPerMonth,
         ]);
     }
+
+    /**
+     * Devuelve los avisos de problemas de accesibilidad que se
+     * han detectado gracias a las revisiones de los usuarios.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function alerts() {
+        $alerts = [];
+
+        $query = Point::join('point_versions', 'points.id', 'point_versions.point_id');
+
+        // Número de puntos que deberían existir pero según X usuarios no existen.
+        $nonExistentPoints = $query->where('shouldExist', true)->where('exists', false)->count();
+        if ($nonExistentPoints > 0) {
+            $alerts[] = [
+                'title' => 'Puntos no existentes',
+                'category' => 'warning',
+                'type' => 'non_existent_points',
+                'text' => "Se han detectado $nonExistentPoints puntos cuya existencia no ha sido verificada.",
+            ];
+        }
+
+        // Número de pasos de cebra con mala visibilidad.
+        $crossBadVisibility = $query->where('properties->visibility', 'bad')->count();
+        if ($crossBadVisibility > 0) {
+            $alerts[] = [
+                'title' => 'Pasos de cebra con mala visibilidad',
+                'category' => 'warning',
+                'type' => 'crosswalk_bad_visibility',
+                'text' => "Se han detectado $crossBadVisibility pasos de cebra con mala visibilidad para cruzar.",
+            ];
+        }
+
+        // Número de pasos de cebra que no tienen vados.
+        $crossNoCurbRamps = $query->where('properties->hasCurbRamps', 'false')->count();
+        if ($crossNoCurbRamps > 0) {
+            $alerts = array_prepend($alerts, [
+                'title' => 'Pasos de cebra sin vados',
+                'category' => 'problem',
+                'type' => 'crosswalk_no_curb_ramps',
+                'text' => "Se han detectado $crossNoCurbRamps pasos de cebra sin vados.",
+            ]);
+        }
+
+        return response()->json($alerts);
+    }
 }
