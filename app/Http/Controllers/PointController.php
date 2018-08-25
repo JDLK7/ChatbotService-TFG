@@ -124,6 +124,10 @@ class PointController extends Controller
                 $points = $query->where('properties->hasCurbRamps', 'false')->get();
                 break;
 
+            case 'obstacle_points':
+                $points = Point::whereType('obstacle')->get();
+                break;
+
             default: $points = [];
                 break;
         }

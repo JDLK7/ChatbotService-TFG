@@ -72,6 +72,29 @@ class DashboardController extends Controller
     public function alerts() {
         $alerts = [];
 
+        // Número de obstáculos varios.
+        $obstacles = Point::whereType('obstacle')->count();
+        if ($obstacles > 0) {
+            $alerts[] = [
+                'title' => 'Obstáculos',
+                'category' => 'problem',
+                'type' => 'obstacle_points',
+                'text' => "Se han detectado $obstacles obstáculos.",
+            ];
+        }
+
+        // Número de pasos de cebra que no tienen vados.
+        $crossNoCurbRamps = Point::join('point_versions', 'points.id', 'point_versions.point_id')
+            ->where('properties->hasCurbRamps', 'false')->count();
+        if ($crossNoCurbRamps > 0) {
+            $alerts[] = [
+                'title' => 'Pasos de cebra sin vados',
+                'category' => 'problem',
+                'type' => 'crosswalk_no_curb_ramps',
+                'text' => "Se han detectado $crossNoCurbRamps pasos de cebra sin vados.",
+            ];
+        }
+
         // Número de puntos que deberían existir pero según X usuarios no existen.
         $nonExistentPoints = Point::join('point_versions', 'points.id', 'point_versions.point_id')
             ->where('shouldExist', true)->where('exists', false)->count();
@@ -94,18 +117,6 @@ class DashboardController extends Controller
                 'type' => 'crosswalk_bad_visibility',
                 'text' => "Se han detectado $crossBadVisibility pasos de cebra con mala visibilidad para cruzar.",
             ];
-        }
-
-        // Número de pasos de cebra que no tienen vados.
-        $crossNoCurbRamps = Point::join('point_versions', 'points.id', 'point_versions.point_id')
-            ->where('properties->hasCurbRamps', 'false')->count();
-        if ($crossNoCurbRamps > 0) {
-            $alerts = array_prepend($alerts, [
-                'title' => 'Pasos de cebra sin vados',
-                'category' => 'problem',
-                'type' => 'crosswalk_no_curb_ramps',
-                'text' => "Se han detectado $crossNoCurbRamps pasos de cebra sin vados.",
-            ]);
         }
 
         return response()->json($alerts);
