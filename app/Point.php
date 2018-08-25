@@ -49,6 +49,7 @@ class Point extends Model
      */
     protected static $singleTableSubclasses = [
         WorksPoint::class,
+        ObstaclePoint::class,
         CrosswalkPoint::class,
         UrbanFurniturePoint::class,
     ];
