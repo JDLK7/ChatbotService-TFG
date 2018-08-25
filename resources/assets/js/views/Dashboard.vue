@@ -4,7 +4,7 @@
 
       <div class="row card">
         <div class="card-body">
-          <div class="card-title alerts-heading" :style="{ marginBottom: isAlertsVisible ? '0.75rem' : 0 }">
+          <div class="card-title card-heading" :style="{ marginBottom: isAlertsVisible ? '0.75rem' : 0 }">
             <h4>Problemas y avisos encontrados</h4>
             <button class="btn btn-default" @click="isAlertsVisible = !isAlertsVisible">
               <i class="fas" :class="[ isAlertsVisible ? 'fa-chevron-up' : 'fa-chevron-down' ]"></i>
@@ -27,8 +27,11 @@
 
       <div v-if="isMapVisible" class="row card">
         <div class="card-body">
-          <div class="card-title">
+          <div class="card-title card-heading">
             <h4>Mapa</h4>
+            <button class="btn btn-default" @click="isMapVisible = !isMapVisible">
+              <i class="fas fa-times"></i>
+            </button>
           </div>
 
           <GmapMap
@@ -79,7 +82,7 @@ export default {
     'monthly-revisions-line': MonthlyRevisionsLine,
   },
   data: () => ({
-    isMapVisible: true,
+    isMapVisible: false,
     isAlertsVisible: true,
     chartStyles: {
       height: '400px',
@@ -140,7 +143,7 @@ export default {
   }
 }
 
-.alerts-heading {
+.card-heading {
   display: flex;
   flex-direction: row;
   align-items: baseline;

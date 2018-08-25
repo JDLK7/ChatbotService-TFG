@@ -119427,7 +119427,7 @@ exports = module.exports = __webpack_require__(36)(false);
 
 
 // module
-exports.push([module.i, "\n.row[data-v-361a3c51]:not(:last-child) {\n  margin-bottom: 1.25rem;\n}\n.revisions-container[data-v-361a3c51] {\n  display: grid;\n  grid-template-columns: 30% auto;\n}\n.revisions-container .card[data-v-361a3c51]:not(:last-child) {\n    margin-right: 1.25rem;\n}\n.alerts-container .alert[data-v-361a3c51] {\n  width: 100%;\n  cursor: pointer;\n}\n.alerts-heading[data-v-361a3c51] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: baseline;\n      -ms-flex-align: baseline;\n          align-items: baseline;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n", ""]);
+exports.push([module.i, "\n.row[data-v-361a3c51]:not(:last-child) {\n  margin-bottom: 1.25rem;\n}\n.revisions-container[data-v-361a3c51] {\n  display: grid;\n  grid-template-columns: 30% auto;\n}\n.revisions-container .card[data-v-361a3c51]:not(:last-child) {\n    margin-right: 1.25rem;\n}\n.alerts-container .alert[data-v-361a3c51] {\n  width: 100%;\n  cursor: pointer;\n}\n.card-heading[data-v-361a3c51] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-align: baseline;\n      -ms-flex-align: baseline;\n          align-items: baseline;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n}\n", ""]);
 
 // exports
 
@@ -119514,6 +119514,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -119526,7 +119529,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      isMapVisible: true,
+      isMapVisible: false,
       isAlertsVisible: true,
       chartStyles: {
         height: '400px',
@@ -119643,7 +119646,7 @@ var reactiveData = __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["c" /* mixins */].r
     __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/overall-revisions').then(function (_ref) {
       var data = _ref.data;
 
-      var revised = data.revised * 100 / data.total;
+      var revised = (data.revised * 100 / data.total).toFixed(2);
       var notRevised = 100 - revised;
 
       _this.chartData = {
@@ -132536,6 +132539,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var reactiveData = __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["c" /* mixins */].reactiveData;
 
 
+var chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }],
+    xAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]
+  }
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   extends: __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["a" /* Line */],
   mixins: [reactiveData],
@@ -132566,11 +132586,11 @@ var reactiveData = __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["c" /* mixins */].r
       });
 
       _this.chartData = lineData;
-      _this.options = { responsive: true, maintainAspectRatio: false };
+      _this.options = chartOptions;
     });
   },
   mounted: function mounted() {
-    this.renderChart(this.chartData, { responsive: true, maintainAspectRatio: false });
+    this.renderChart(this.chartData, chartOptions);
   }
 });
 
@@ -132589,7 +132609,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "card-title alerts-heading",
+              staticClass: "card-title card-heading",
               style: { marginBottom: _vm.isAlertsVisible ? "0.75rem" : 0 }
             },
             [
@@ -132670,7 +132690,22 @@ var render = function() {
               "div",
               { staticClass: "card-body" },
               [
-                _vm._m(0),
+                _c("div", { staticClass: "card-title card-heading" }, [
+                  _c("h4", [_vm._v("Mapa")]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      on: {
+                        click: function($event) {
+                          _vm.isMapVisible = !_vm.isMapVisible
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-times" })]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "GmapMap",
@@ -132738,16 +132773,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-title" }, [
-      _c("h4", [_vm._v("Mapa")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
