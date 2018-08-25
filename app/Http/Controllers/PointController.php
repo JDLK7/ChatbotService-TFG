@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Point;
+use App\ObstaclePoint;
 use Illuminate\Http\Request;
 use App\Services\PointService;
 use Illuminate\Support\Facades\DB;
@@ -108,7 +109,7 @@ class PointController extends Controller
 
         $type = $request->query('type');
 
-        $query = Point::join('point_versions', 'points.id', 'point_versions.point_id');
+        $query = ObstaclePoint::join('point_versions', 'points.id', 'point_versions.point_id');
         $points;
 
         switch ($type) {
