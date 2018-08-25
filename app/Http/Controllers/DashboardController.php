@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Point;
 use Carbon\Carbon;
+use App\ObstaclePoint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -73,7 +74,7 @@ class DashboardController extends Controller
         $alerts = [];
 
         // Número de obstáculos varios.
-        $obstacles = Point::whereType('obstacle')->count();
+        $obstacles = ObstaclePoint::count();
         if ($obstacles > 0) {
             $alerts[] = [
                 'title' => 'Obstáculos',
