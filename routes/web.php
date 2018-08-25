@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::view('/import', 'import')->name('import');
     Route::post('/import', 'PointController@import');
-    Route::view('/import', 'import');
     
     Route::get('/home', 'HomeController@index')->name('home');
     
