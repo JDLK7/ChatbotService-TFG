@@ -10,7 +10,7 @@ export default {
   beforeMount() {
     axios.get('/api/overall-revisions')
     .then(({ data }) => {
-      const revised = data.revised * 100 / data.total;
+      const revised = (data.revised * 100 / data.total).toFixed(2);
       const notRevised = 100 - revised;
 
       this.chartData = {

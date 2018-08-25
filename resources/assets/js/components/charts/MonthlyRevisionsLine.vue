@@ -4,6 +4,23 @@ import axios from 'axios';
 
 const { reactiveData } = mixins;
 
+const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    yAxes: [{
+      ticks: {
+          beginAtZero: true,
+      },
+    }],
+    xAxes: [{
+      ticks: {
+          beginAtZero: true,
+      },
+    }],
+  },
+};
+
 export default {
   extends: Line,
   mixins: [ reactiveData ],
@@ -32,11 +49,11 @@ export default {
       });
 
       this.chartData = lineData;
-      this.options = { responsive: true, maintainAspectRatio: false };
+      this.options = chartOptions;
     });
   },
   mounted () {
-    this.renderChart(this.chartData, { responsive: true, maintainAspectRatio: false });
+    this.renderChart(this.chartData, chartOptions);
   },
 };
 </script>
