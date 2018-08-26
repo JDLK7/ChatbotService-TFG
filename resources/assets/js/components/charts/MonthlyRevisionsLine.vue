@@ -32,7 +32,7 @@ export default {
     ],
   }),
   beforeMount() {
-    axios.get('/api/monthly-revisions')
+    axios.get('/monthly-revisions')
     .then(({ data }) => {
       let lineData = {
         labels: data.months,

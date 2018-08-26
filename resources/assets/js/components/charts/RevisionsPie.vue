@@ -8,7 +8,7 @@ export default {
   extends: Pie,
   mixins: [ reactiveData ],
   beforeMount() {
-    axios.get('/api/overall-revisions')
+    axios.get('/overall-revisions')
     .then(({ data }) => {
       const revised = (data.revised * 100 / data.total).toFixed(2);
       const notRevised = 100 - revised;
