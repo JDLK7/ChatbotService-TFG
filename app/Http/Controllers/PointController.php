@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 use App\Services\PointService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\CrosswalkPoint;
 
 class PointController extends Controller
 {
+    /**
+     * @var \App\Services\PointService
+     */
+    private $pointService;
+
+    public function __construct()
+    {
+        $this->pointService = new PointService();
+    }
+
     public function import(Request $request) {
         $validator = Validator::make($request->all(), [
             'file' => 'required|file|mimetypes:text/xml',
@@ -108,7 +119,8 @@ class PointController extends Controller
 
         $type = $request->query('type');
 
-        $query = Point::join('point_versions', 'points.id', 'point_versions.point_id');
+        $query = Point::select('points.*')
+            ->join('point_versions', 'points.id', 'point_versions.point_id');
         $points;
 
         switch ($type) {
@@ -134,5 +146,21 @@ class PointController extends Controller
 
         // JSON_NUMERIC_CHECK sirve para que NO se serialicen los números como strings.
         return response()->json($points, 200, [], JSON_NUMERIC_CHECK);
+    }
+
+    /**
+     * Devuelve un punto con sus versiones y datos sobre sus revisiones.
+     *
+     * @param \App\Point $point
+     * @return \Illuminate\Http\Request
+     */
+    public function show(Point $point) {
+        if (is_a($point, CrosswalkPoint::class)) {
+            return response()->json(
+                $this->pointService->crosswalkPointWithDetails($point)
+            );
+        }
+
+        return response()->json($point);
     }
 }
