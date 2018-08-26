@@ -29,3 +29,10 @@ $factory->define(App\UrbanFurniturePoint::class, function (Faker $faker) {
         'longitude' => $faker->randomFloat(7, -180, 180),
     ];
 });
+
+$factory->define(App\ObstaclePoint::class, function (Faker $faker) {
+    return [
+        'latitude' => $faker->randomFloat(7, -180, 180),
+        'longitude' => $faker->randomFloat(7, -180, 180),
+    ];
+});

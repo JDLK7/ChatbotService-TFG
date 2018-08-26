@@ -212,7 +212,7 @@ class Point extends Model
     }
 
     /**
-     * Devuelve la distancia a otro punto.
+     * Devuelve la distancia a otro punto en metros.
      *
      * @param \App\Point $point
      * @return float
