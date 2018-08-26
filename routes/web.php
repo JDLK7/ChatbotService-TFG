@@ -25,4 +25,12 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::match(['get', 'post'], '/botman', 'BotManController@handle');
     Route::get('/botman/tinker', 'BotManController@tinker');
+
+    // Rutas del panel de control
+    Route::get('points/{point}', 'PointController@show');
+    Route::get('alerts', 'DashboardController@alerts');
+    Route::get('overall-revisions', 'DashboardController@overallRevisions');
+    Route::get('points-by-alert-type', 'PointController@pointsByAlertType');
+    Route::get('monthly-revisions', 'DashboardController@revisionsPerMonth');
+
 });
