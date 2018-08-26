@@ -45,6 +45,7 @@
               :position="{ lat: point.latitude, lng: point.longitude }"
               :clickable="true"
               :draggable="false"
+              :icon="`/img/${shownAlertMap}.png`"
               @click="pointProperties(point)"/>
           </GmapMap>
 
@@ -92,6 +93,7 @@ export default {
     isMapVisible: false,
     isModalVisible: true,
     isAlertsVisible: true,
+    shownAlertMap: '',
     chartStyles: {
       height: '400px',
       position: 'relative',
@@ -110,6 +112,8 @@ export default {
   }),
   methods: {
     showOnMap(type) {
+      this.shownAlertMap = type;
+
       this.isMapVisible = true;
       this.isAlertsVisible = false;
 
