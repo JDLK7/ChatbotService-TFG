@@ -31,30 +31,32 @@
               </div>
             </form>
           </div>
+          
+          <template v-if="point.hasOwnProperty('properties')">
+            <div class="modal-header">
+              <slot name="header">
+                <h3>Respuesta de los usuarios al estado del punto</h3>
+              </slot>
+            </div>
 
-          <div class="modal-header">
-            <slot name="header">
-              <h3>Respuesta de los usuarios al estado del punto</h3>
-            </slot>
-          </div>
-
-          <div class="modal-body">
-            <div v-if="point.hasOwnProperty('properties')" class="row">
-              <!-- <h4>Respuesta de los usuarios al estado del punto</h4> -->
-              <div class="col-sm-4 text-center">
-                <pie-chart :chart-data="curbsPieData" :styles="chartStyles" />
-                <h5>Tiene vados</h5>
-              </div>
-              <div class="col-sm-4 text-center">
-                <pie-chart :chart-data="semaphorePieData" :styles="chartStyles" />
-                <h5>Tiene semáforo</h5>
-              </div>
-              <div class="col-sm-4 text-center">
-                <pie-chart :chart-data="visibilityPieData" :styles="chartStyles" />
-                <h5>Visibilidad</h5>
+            <div class="modal-body">
+              <div class="row">
+                <!-- <h4>Respuesta de los usuarios al estado del punto</h4> -->
+                <div class="col-sm-4 text-center">
+                  <pie-chart :chart-data="curbsPieData" :styles="chartStyles" />
+                  <h5>Tiene vados</h5>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <pie-chart :chart-data="semaphorePieData" :styles="chartStyles" />
+                  <h5>Tiene semáforo</h5>
+                </div>
+                <div class="col-sm-4 text-center">
+                  <pie-chart :chart-data="visibilityPieData" :styles="chartStyles" />
+                  <h5>Visibilidad</h5>
+                </div>
               </div>
             </div>
-          </div>
+          </template>
 
           <div class="modal-footer">
             <slot name="footer">

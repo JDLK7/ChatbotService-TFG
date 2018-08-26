@@ -119769,6 +119769,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -132747,147 +132749,156 @@ var render = function() {
   return _c("transition", { attrs: { name: "modal" } }, [
     _c("div", { staticClass: "modal-mask" }, [
       _c("div", { staticClass: "modal-wrapper" }, [
-        _c("div", { staticClass: "modal-container" }, [
-          _c(
-            "div",
-            { staticClass: "modal-header" },
-            [_vm._t("header", [_c("h3", [_vm._v("Detalles del punto")])])],
-            2
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("form", { attrs: { name: "body" } }, [
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-sm-4 col-form-label",
-                    attrs: { for: "coordinates" }
-                  },
-                  [_vm._v("Coordenadas:")]
-                ),
+        _c(
+          "div",
+          { staticClass: "modal-container" },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-header" },
+              [_vm._t("header", [_c("h3", [_vm._v("Detalles del punto")])])],
+              2
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("form", { attrs: { name: "body" } }, [
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-sm-4 col-form-label",
+                      attrs: { for: "coordinates" }
+                    },
+                    [_vm._v("Coordenadas:")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-8" }, [
+                    _c("input", {
+                      staticClass: "form-control-plaintext",
+                      attrs: { type: "text", readonly: "", id: "coordinates" },
+                      domProps: {
+                        value: _vm.point.latitude + ", " + _vm.point.longitude
+                      }
+                    })
+                  ])
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-sm-8" }, [
-                  _c("input", {
-                    staticClass: "form-control-plaintext",
-                    attrs: { type: "text", readonly: "", id: "coordinates" },
-                    domProps: {
-                      value: _vm.point.latitude + ", " + _vm.point.longitude
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-sm-4 col-form-label",
-                    attrs: { for: "coordinates" }
-                  },
-                  [_vm._v("Fecha creación:")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-8" }, [
-                  _c("input", {
-                    staticClass: "form-control-plaintext",
-                    attrs: { type: "text", readonly: "", id: "coordinates" },
-                    domProps: { value: _vm.point.created_at }
-                  })
+                _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-sm-4 col-form-label",
+                      attrs: { for: "coordinates" }
+                    },
+                    [_vm._v("Fecha creación:")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-8" }, [
+                    _c("input", {
+                      staticClass: "form-control-plaintext",
+                      attrs: { type: "text", readonly: "", id: "coordinates" },
+                      domProps: { value: _vm.point.created_at }
+                    })
+                  ])
                 ])
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "modal-header" },
-            [
-              _vm._t("header", [
-                _c("h3", [
-                  _vm._v("Respuesta de los usuarios al estado del punto")
-                ])
-              ])
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
+            ]),
+            _vm._v(" "),
             _vm.point.hasOwnProperty("properties")
-              ? _c("div", { staticClass: "row" }, [
+              ? [
                   _c(
                     "div",
-                    { staticClass: "col-sm-4 text-center" },
+                    { staticClass: "modal-header" },
                     [
-                      _c("pie-chart", {
-                        attrs: {
-                          "chart-data": _vm.curbsPieData,
-                          styles: _vm.chartStyles
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("h5", [_vm._v("Tiene vados")])
+                      _vm._t("header", [
+                        _c("h3", [
+                          _vm._v(
+                            "Respuesta de los usuarios al estado del punto"
+                          )
+                        ])
+                      ])
                     ],
-                    1
+                    2
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 text-center" },
-                    [
-                      _c("pie-chart", {
-                        attrs: {
-                          "chart-data": _vm.semaphorePieData,
-                          styles: _vm.chartStyles
-                        }
-                      }),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 text-center" },
+                        [
+                          _c("pie-chart", {
+                            attrs: {
+                              "chart-data": _vm.curbsPieData,
+                              styles: _vm.chartStyles
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("h5", [_vm._v("Tiene vados")])
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("h5", [_vm._v("Tiene semáforo")])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 text-center" },
-                    [
-                      _c("pie-chart", {
-                        attrs: {
-                          "chart-data": _vm.visibilityPieData,
-                          styles: _vm.chartStyles
-                        }
-                      }),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 text-center" },
+                        [
+                          _c("pie-chart", {
+                            attrs: {
+                              "chart-data": _vm.semaphorePieData,
+                              styles: _vm.chartStyles
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("h5", [_vm._v("Tiene semáforo")])
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("h5", [_vm._v("Visibilidad")])
-                    ],
-                    1
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 text-center" },
+                        [
+                          _c("pie-chart", {
+                            attrs: {
+                              "chart-data": _vm.visibilityPieData,
+                              styles: _vm.chartStyles
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("h5", [_vm._v("Visibilidad")])
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ]
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "modal-footer" },
+              [
+                _vm._t("footer", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: {
+                        click: function($event) {
+                          _vm.$emit("close")
+                        }
+                      }
+                    },
+                    [_vm._v("\n              OK\n            ")]
                   )
                 ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "modal-footer" },
-            [
-              _vm._t("footer", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    on: {
-                      click: function($event) {
-                        _vm.$emit("close")
-                      }
-                    }
-                  },
-                  [_vm._v("\n              OK\n            ")]
-                )
-              ])
-            ],
-            2
-          )
-        ])
+              ],
+              2
+            )
+          ],
+          2
+        )
       ])
     ])
   ])
