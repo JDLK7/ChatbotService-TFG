@@ -15,6 +15,8 @@ class NearestPointTest extends TestCase
     use DatabaseTransactions;
 
     public function test_it_gets_nearest_point() {
+        Point::whereNotNull('id')->delete();
+
         $user = factory(User::class)->create();
         $point = factory(CrosswalkPoint::class)->create();
 
@@ -53,6 +55,8 @@ class NearestPointTest extends TestCase
     }
 
     public function test_it_fails_if_there_are_no_points_stored() {
+        Point::whereNotNull('id')->delete();
+
         $this->expectException(NoPointsException::class);
 
         $user = factory(User::class)->create();
