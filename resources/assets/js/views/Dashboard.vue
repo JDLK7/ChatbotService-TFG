@@ -123,6 +123,7 @@ export default {
     pointProperties(point) {
       axios.get(`/points/${point.id}`)
       .then(({ data }) => {
+        this.isModalVisible = true;
         this.detailedPoint = data;
       });
     },
@@ -130,7 +131,6 @@ export default {
   beforeMount() {
     axios.get('/alerts')
     .then(({ data }) => {
-      this.isModalVisible = true;
       this.alerts = this.alerts.concat(data);
     });
   },

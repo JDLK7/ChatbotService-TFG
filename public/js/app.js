@@ -119579,6 +119579,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/points/' + point.id).then(function (_ref2) {
         var data = _ref2.data;
 
+        _this2.isModalVisible = true;
         _this2.detailedPoint = data;
       });
     }
@@ -119589,7 +119590,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/alerts').then(function (_ref3) {
       var data = _ref3.data;
 
-      _this3.isModalVisible = true;
       _this3.alerts = _this3.alerts.concat(data);
     });
   }
