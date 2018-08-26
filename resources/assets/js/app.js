@@ -16,7 +16,7 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 
 window.Vue = require('vue');
 
-Vue.use(Element)
+Vue.use(Element);
 
 /**
  * Componentes importados

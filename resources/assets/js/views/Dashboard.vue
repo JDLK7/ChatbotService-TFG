@@ -40,11 +40,12 @@
             :options="map.options"
             style="width: 100%; height: 600px">
             <GmapMarker
-              v-for="marker in map.markers"
-              :key="marker.id"
-              :position="{ lat:  marker.latitude, lng: marker.longitude }"
-              :clickable="false"
-              :draggable="false" />
+              v-for="point in map.points"
+              :key="point.id"
+              :position="{ lat: point.latitude, lng: point.longitude }"
+              :clickable="true"
+              :draggable="false"
+              @click="pointProperties(point)"/>
           </GmapMap>
 
         </div>
@@ -67,22 +68,29 @@
         </div>
       </div>
 
+      <modal-details
+        v-if="detailedPoint && isModalVisible"
+        :point="detailedPoint" @close="isModalVisible = false" />
+
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import ModalDetails from '../components/ModalDetails';
 import RevisionsPie from '../components/charts/RevisionsPie';
 import MonthlyRevisionsLine from '../components/charts/MonthlyRevisionsLine';
 
 export default {
   components: {
+    'modal-details': ModalDetails,
     'revisions-pie': RevisionsPie,
     'monthly-revisions-line': MonthlyRevisionsLine,
   },
   data: () => ({
     isMapVisible: false,
+    isModalVisible: true,
     isAlertsVisible: true,
     chartStyles: {
       height: '400px',
@@ -96,25 +104,33 @@ export default {
           fullscreenControl: false,
           streetViewControl: false,
       },
-      markers: [],
-    }
+      points: [],
+    },
+    detailedPoint: null,
   }),
   methods: {
     showOnMap(type) {
       this.isMapVisible = true;
       this.isAlertsVisible = false;
 
-      axios.get('/api/points-by-alert-type', {
+      axios.get('/points-by-alert-type', {
         params: { type },
       })
       .then(({ data }) => {
-        this.map.markers = data;
+        this.map.points = data;
+      });
+    },
+    pointProperties(point) {
+      axios.get(`/points/${point.id}`)
+      .then(({ data }) => {
+        this.detailedPoint = data;
       });
     },
   },
   beforeMount() {
-    axios.get('/api/alerts')
+    axios.get('/alerts')
     .then(({ data }) => {
+      this.isModalVisible = true;
       this.alerts = this.alerts.concat(data);
     });
   },
