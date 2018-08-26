@@ -34,6 +34,16 @@ class PointVersion extends Model
     }
 
     /**
+     * Decodifica el JSON y lo devuelve como stdClass para su manejo.
+     *
+     * @param string $value
+     * @return object
+     */
+    public function getPropertiesAttribute($value) : object {
+        return json_decode($value);
+    }
+
+    /**
      * Devuelve el punto al que pertenece la versión.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
