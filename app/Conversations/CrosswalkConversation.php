@@ -9,19 +9,6 @@ use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 
 class CrosswalkConversation extends AccessibilityConversation
 {
-    /**
-     * Las propiedades del punto.
-     *
-     * @var object
-     */
-    protected $properties;
-
-    protected function reviewPoint() {
-        $review = $this->point->makeVersion(auth()->user());
-        $review->properties = $this->properties;
-        $review->save();
-    }
-
     public function __construct($point) {
         $this->properties = (object) [
             'visibility' => null,
@@ -83,7 +70,6 @@ class CrosswalkConversation extends AccessibilityConversation
                 $this->properties->hasSemaphore = ($answer->getValue() === 'true');
 
                 $this->askForRating();
-                $this->reviewPoint();
             }
         });
     }

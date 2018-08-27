@@ -156,10 +156,10 @@ class PointController extends Controller
      */
     public function show(Point $point) {
         if (is_a($point, CrosswalkPoint::class)) {
-            return response()->json(
-                $this->pointService->crosswalkPointWithDetails($point)
-            );
+            $point = $this->pointService->crosswalkPointWithDetails($point);
         }
+
+        $point["rating"] = round($point->versions()->avg('rating'), 1); 
 
         return response()->json($point);
     }

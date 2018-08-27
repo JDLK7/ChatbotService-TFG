@@ -18,6 +18,7 @@ class CreatePointVersionsTable extends Migration
             $table->boolean('shouldExist')->default(true);
             $table->boolean('exists')->default(false);
             $table->jsonb('properties')->nullable();
+            $table->decimal('rating', 2, 1)->nullable();
             $table->uuid('point_id');
             $table->uuid('user_id')->nullable();
             $table->timestamps();
