@@ -48,6 +48,7 @@ class PointsTestDataSeeder extends Seeder
                     'visibility' => $visibilityGrades[mt_rand(0, 2)],
                     'hasSemaphore' => mt_rand(0, 1) == 1,
                 ];
+                $revision->rating = mt_rand(1, 5);
                 $revision->save();
             }
         }
