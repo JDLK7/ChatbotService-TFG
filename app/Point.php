@@ -194,7 +194,8 @@ class Point extends Model
 
         // Si hay un usuario autentificado se descartan los puntos que haya revisado anteriormente.
         if (isset($user)) {
-            $query = $query->join('point_versions', 'points.id', 'point_versions.point_id')
+            $query = $query->select('points.*')
+                ->join('point_versions', 'points.id', 'point_versions.point_id')
                 ->whereNull('user_id')
                 ->orWhere('user_id', '<>', $user->id);
         }
