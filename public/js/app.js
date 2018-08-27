@@ -119771,6 +119771,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -132800,7 +132812,44 @@ var render = function() {
                       domProps: { value: _vm.point.created_at }
                     })
                   ])
-                ])
+                ]),
+                _vm._v(" "),
+                _vm.point.hasOwnProperty("rating")
+                  ? _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-4 col-form-label",
+                          attrs: { for: "coordinates" }
+                        },
+                        [_vm._v("Valoración de accesibilidad:")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-8" },
+                        [
+                          _c("el-rate", {
+                            attrs: {
+                              disabled: "",
+                              "show-score": "",
+                              "allow-half": "",
+                              "text-color": "#ff9900",
+                              "score-template": "{value} puntos"
+                            },
+                            model: {
+                              value: _vm.point.rating,
+                              callback: function($$v) {
+                                _vm.$set(_vm.point, "rating", $$v)
+                              },
+                              expression: "point.rating"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  : _vm._e()
               ])
             ]),
             _vm._v(" "),

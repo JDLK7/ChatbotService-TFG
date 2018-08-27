@@ -29,6 +29,18 @@
                     type="text" readonly class="form-control-plaintext" id="coordinates">
                 </div>
               </div>
+              <div v-if="point.hasOwnProperty('rating')" class="form-group row">
+                <label for="coordinates" class="col-sm-4 col-form-label">Valoración de accesibilidad:</label>
+                <div class="col-sm-8">
+                  <el-rate
+                    v-model="point.rating"
+                    disabled
+                    show-score
+                    allow-half
+                    text-color="#ff9900"
+                    score-template="{value} puntos" />
+                </div>
+              </div>
             </form>
           </div>
           
