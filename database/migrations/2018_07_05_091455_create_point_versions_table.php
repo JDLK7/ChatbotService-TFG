@@ -16,7 +16,7 @@ class CreatePointVersionsTable extends Migration
         Schema::create('point_versions', function (Blueprint $table) {
             $table->uuid('id');
             $table->boolean('shouldExist')->default(true);
-            $table->boolean('exists')->default(false);
+            $table->boolean('doesExist')->default(false);
             $table->jsonb('properties')->nullable();
             $table->decimal('rating', 2, 1)->nullable();
             $table->uuid('point_id');

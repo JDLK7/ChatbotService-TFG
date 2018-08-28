@@ -18,33 +18,33 @@ abstract class AccessibilityConversation extends Conversation
     protected $point;
 
     /**
-     * Las propiedades del punto.
+     * La revisión del punto.
+     *
+     * @var \App\PointVersion
+     */
+    protected $review;
+    
+    /**
+     * Las propiedades de la revisión.
      *
      * @var object
      */
     protected $properties;
-    
-    /**
-     * La valoración de accesibilidad del punto.
-     *
-     * @var int
-     */
-    protected $rating;
 
     /**
-     * Crea una revisión, se la asigna al punto y se guarda.
+     * Asigna las propiedades recogidas a la revisión y la guarda.
      *
      * @return void
      */
     protected function reviewPoint() {
-        $review = $this->point->makeVersion(auth()->user());
-        $review->properties = $this->properties;
-        $review->rating = $this->rating;
-        $review->save();
+        $this->review->properties = $this->properties;
+        $this->review->doesExist = true;
+        $this->review->save();
     }
 
     public function __construct($point) {
         $this->point = $point;
+        $this->review = $this->point->makeVersion(auth()->user());
     }
 
     protected function askForRating() {
@@ -54,10 +54,10 @@ abstract class AccessibilityConversation extends Conversation
             ->addAction(RatingAction::create('rating'));
 
         return $this->ask($question, function (Answer $answer) {
-            $this->rating = floatval($answer->getValue());
+            $this->review->rating = floatval($answer->getValue());
             $this->reviewPoint();
 
-            $this->say("Puntuación: $this->rating");
+            $this->say("Puntuación: {$this->review->rating}");
             $this->say('Gracias por tu colaboración');
         });
     }
