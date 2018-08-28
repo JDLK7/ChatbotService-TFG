@@ -98,7 +98,7 @@ class DashboardController extends Controller
 
         // Número de puntos que deberían existir pero según X usuarios no existen.
         $nonExistentPoints = Point::join('point_versions', 'points.id', 'point_versions.point_id')
-            ->where('shouldExist', true)->where('exists', false)->count();
+            ->where('shouldExist', true)->where('doesExist', false)->count();
         if ($nonExistentPoints > 0) {
             $alerts[] = [
                 'title' => 'Puntos no existentes',
