@@ -194,15 +194,14 @@ class Point extends Model
 
         // Si hay un usuario autentificado se descartan los puntos que haya revisado anteriormente.
         if (isset($user)) {
-            $query = $query->select('points.*')
-                ->join('point_versions', 'points.id', 'point_versions.point_id')
-                ->whereNull('user_id')
-                ->orWhere('user_id', '<>', $user->id);
+            $query = $query->whereNotIn('id', function ($subQuery) use ($user) {
+                $subQuery->select('point_id')
+                    ->from('point_versions')
+                    ->whereUserId($user->id);
+            });
         }
 
-        // Se cogen dos porque el punto más cercano a otro es
-        // el mismo punto y nosotros queremos uno diferente.
-        $nearest = $query->take(2)->get()->last();
+        $nearest = $query->first();
 
         // Si no se ha encontrado el punto más cercano significa que la BD está vacía.
         if (is_null($nearest)) {
