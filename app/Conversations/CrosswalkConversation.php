@@ -20,12 +20,12 @@ class CrosswalkConversation extends AccessibilityConversation
     }
 
     public function askAboutCurbRamps() {
-        $question = Question::create('¿El paso de cebra cuenta con vados para acceder con silla de ruedas u otros?')
-            ->fallback('Unable to ask question')
-            ->callbackId('ask_semafore_existence')
+        $question = Question::create(__('botman/questions.ask_crosswalk_curb_ramps'))
+            ->fallback(__('botman/questions.fallback'))
+            ->callbackId('ask_crosswalk_curb_ramps')
             ->addButtons([
-                Button::create('Si')->value('true'),
-                Button::create('No')->value('false'),
+                Button::create(__('botman/answers.yes'))->value('true'),
+                Button::create(__('botman/answers.no'))->value('false'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {
@@ -38,13 +38,13 @@ class CrosswalkConversation extends AccessibilityConversation
     }
 
     public function askAboutVisibility() {
-        $question = Question::create('¿Cómo es la visibilidad desde el paso de cebra a la calzada?')
-            ->fallback('Unable to ask question')
-            ->callbackId('ask_semafore_existence')
+        $question = Question::create(__('botman/questions.ask_crosswalk_visibility'))
+            ->fallback(__('botman/questions.fallback'))
+            ->callbackId('ask_crosswalk_visibility')
             ->addButtons([
-                Button::create('Buena')->value('good'),
-                Button::create('Normal')->value('normal'),
-                Button::create('Mala')->value('bad'),
+                Button::create(__('botman/answers.visibility.good'))->value('good'),
+                Button::create(__('botman/answers.visibility.normal'))->value('normal'),
+                Button::create(__('botman/answers.visibility.bad'))->value('bad'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {
@@ -57,12 +57,12 @@ class CrosswalkConversation extends AccessibilityConversation
     }
 
     public function askAboutSemaphore() {
-        $question = Question::create('¿La calle que cruza el paso de cebra tiene semáforos sonoros?')
-            ->fallback('Unable to ask question')
-            ->callbackId('ask_semafore_existence')
+        $question = Question::create(__('botman/questions.ask_crosswalk_semaphore'))
+            ->fallback(__('botman/questions.fallback'))
+            ->callbackId('ask_crosswalk_semaphore')
             ->addButtons([
-                Button::create('Si')->value('true'),
-                Button::create('No')->value('false'),
+                Button::create(__('botman/answers.yes'))->value('true'),
+                Button::create(__('botman/answers.no'))->value('false'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {

@@ -24,8 +24,8 @@ class CategorizationConversation extends AccessibilityConversation
 
     public function askPointSubtype()
     {
-        $question = Question::create(__('botman/questions.obstacle_type'))
-            ->fallback('Unable to ask question')
+        $question = Question::create(__('botman/questions.ask_obstacle_type'))
+            ->fallback(__('botman/questions.fallback'))
             ->callbackId('ask_obstacle_type')
             ->addButtons($this->createButtons());
 
