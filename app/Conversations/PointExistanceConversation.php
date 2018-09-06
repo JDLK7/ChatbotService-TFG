@@ -17,10 +17,10 @@ class PointExistanceConversation extends AccessibilityConversation
      */
     public function askIfPointExists()
     {
-        $question = Question::create(__('botman/questions.existence', [
+        $question = Question::create(__('botman/questions.ask_existence', [
                 'type' => $this->point->displayName,
             ]))
-            ->fallback('Unable to ask question')
+            ->fallback(__('botman/questions.fallback'))
             ->callbackId('ask_existence')
             ->addButtons([
                 Button::create('Si')->value('true'),
@@ -38,7 +38,7 @@ class PointExistanceConversation extends AccessibilityConversation
                         $this->askForRating();
                     }
                 } else {
-                    $this->say('Gracias por tu colaboración');
+                    $this->say(__('botman/questions.appreciation'));
                 }
             }
         });

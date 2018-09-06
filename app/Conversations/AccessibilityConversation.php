@@ -48,8 +48,10 @@ abstract class AccessibilityConversation extends Conversation
     }
 
     protected function askForRating() {
-        $question = Question::create("Valora el grado de accesibilidad del {$this->point->type}")
-            ->fallback('Unable to ask question')
+        $question = Question::create(__('botman/questions.ask_accessibility_rating', [
+                'type' => $this->point->type
+            ]))
+            ->fallback(__('botman/questions.fallback'))
             ->callbackId('ask_accessibility_rating')
             ->addAction(RatingAction::create('rating'));
 
@@ -58,7 +60,7 @@ abstract class AccessibilityConversation extends Conversation
             $this->reviewPoint();
 
             $this->say("Puntuación: {$this->review->rating}");
-            $this->say('Gracias por tu colaboración');
+            $this->say(__('botman/questions.appreciation'));
         });
     }
 
