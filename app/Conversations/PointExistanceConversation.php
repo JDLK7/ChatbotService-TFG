@@ -23,8 +23,8 @@ class PointExistanceConversation extends AccessibilityConversation
             ->fallback(__('botman/questions.fallback'))
             ->callbackId('ask_existence')
             ->addButtons([
-                Button::create('Si')->value('true'),
-                Button::create('No')->value('false'),
+                Button::create(__('botman/answers.yes'))->value('true'),
+                Button::create(__('botman/answers.no'))->value('false'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {

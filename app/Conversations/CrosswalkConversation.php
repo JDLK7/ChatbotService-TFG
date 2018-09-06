@@ -24,8 +24,8 @@ class CrosswalkConversation extends AccessibilityConversation
             ->fallback(__('botman/questions.fallback'))
             ->callbackId('ask_crosswalk_curb_ramps')
             ->addButtons([
-                Button::create('Si')->value('true'),
-                Button::create('No')->value('false'),
+                Button::create(__('botman/answers.yes'))->value('true'),
+                Button::create(__('botman/answers.no'))->value('false'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {
@@ -42,9 +42,9 @@ class CrosswalkConversation extends AccessibilityConversation
             ->fallback(__('botman/questions.fallback'))
             ->callbackId('ask_crosswalk_visibility')
             ->addButtons([
-                Button::create('Buena')->value('good'),
-                Button::create('Normal')->value('normal'),
-                Button::create('Mala')->value('bad'),
+                Button::create(__('botman/answers.visibility.good'))->value('good'),
+                Button::create(__('botman/answers.visibility.normal'))->value('normal'),
+                Button::create(__('botman/answers.visibility.bad'))->value('bad'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {
@@ -61,8 +61,8 @@ class CrosswalkConversation extends AccessibilityConversation
             ->fallback(__('botman/questions.fallback'))
             ->callbackId('ask_crosswalk_semaphore')
             ->addButtons([
-                Button::create('Si')->value('true'),
-                Button::create('No')->value('false'),
+                Button::create(__('botman/answers.yes'))->value('true'),
+                Button::create(__('botman/answers.no'))->value('false'),
             ]);
 
         return $this->ask($question, function (Answer $answer) {
