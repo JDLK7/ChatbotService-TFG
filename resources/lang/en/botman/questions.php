@@ -13,6 +13,7 @@ return [
 
     'fallback' => 'Error: Unable to ask question.',
     'appreciation' => 'Thanks for your colaboration',
+    'rating' => 'Rating: :rating',
     'ask_existence' => 'Is there a :type in your current location?',
     'ask_obstacle_type' => 'What type of obstacle do you think it is?',
     'ask_point_type' => 'What type of point do you want to create?',

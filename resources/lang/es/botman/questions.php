@@ -13,6 +13,7 @@ return [
 
     'fallback' => 'Error: No se ha podido realizar la pregunta.',
     'appreciation' => 'Gracias por tu colaboración',
+    'rating' => 'Valoración: :rating',
     'ask_existence' => '¿Existe un :type en tu ubicación?',
     'ask_obstacle_type' => '¿De qué tipo de obstáculo consideras que se trata?',
     'ask_point_type' => '¿Qué tipo de punto quieres crear?',
