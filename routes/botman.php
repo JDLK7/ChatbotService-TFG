@@ -1,11 +1,11 @@
 <?php
 
+use BotMan\BotMan\Middleware\ApiAi;
 use App\Http\Controllers\BotManController;
 
 $botman = resolve('botman');
 
-$botman->hears('Hi', function ($bot) {
-    $bot->reply('Hello!');
-});
-$botman->hears('Start conversation', BotManController::class.'@startConversation');
-$botman->hears('point_found', BotManController::class.'@startPointConversation');
+$dialogflow = ApiAi::create('bc654b2b8b4a42a1b621609f9a0d5824')->listenForAction();
+$botman->middleware->received($dialogflow);
+
+$botman->hears('.*', BotManController::class.'@nlpHandler')->middleware($dialogflow);
